@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
-function App() {
+type BlockProps = {
+  defaultColor: 'white' | 'red' | 'green'
+}
+const Block = ({defaultColor}: BlockProps) => {
+  const [color, setColor] = useState(defaultColor)
+
+  const handleClick = () => {
+    switch (color) {
+      case 'white': setColor('red'); break;
+      case 'red': setColor('green'); break;
+      case 'green': setColor('white'); break;
+    }
+  }
+
+  return <div className="Block" style={{backgroundColor: color}} onClick={handleClick}></div>
+}
+
+export const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <table>
+        <tr>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+          <td>
+            <Block defaultColor={"white"} />
+          </td>
+        </tr>
+      </table>
     </div>
   );
 }
-
-export default App;
